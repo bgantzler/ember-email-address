@@ -1,0 +1,1 @@
+export { default } from 'embr-email-address/components/email-address';
