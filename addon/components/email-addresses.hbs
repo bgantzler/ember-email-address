@@ -1,0 +1,20 @@
+<div data-test-email-select ...attributes>
+  {{#if @label}}
+    <label>
+      {{@label}}
+    </label>
+  {{/if}}
+  <PowerSelectMultiple
+          @triggerClass={{this.triggerClass}}
+          @options={{this.availableEmails}}
+          @selected={{this.selectedEmails}}
+          @onChange={{@onChangeSelected}}
+          @onBlur={{fn this.onBlur}}
+          @searchEnabled={{true}}
+          @renderInPlace={{true}}
+          @noMatchesMessage=""
+          @onKeydown={{this.onKeydown}}
+          as |email|>
+    {{email}}
+  </PowerSelectMultiple>
+</div>
