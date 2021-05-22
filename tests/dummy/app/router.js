@@ -7,8 +7,10 @@ export default class Router extends AddonDocsRouter {
 }
 
 Router.map(function () {
-  docsRoute(this, function() { /* Your docs routes go here */ });
-  this.route('docs', function() {
+  docsRoute(this, function () {
+    /* Your docs routes go here */
+  });
+  this.route('docs', function () {
     this.route('usage');
   });
   this.route('not-found', { path: '/*path' });

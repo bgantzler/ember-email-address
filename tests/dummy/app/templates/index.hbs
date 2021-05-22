@@ -1,11 +1,15 @@
-{{page-title "Index"}}
+{{page-title 'Index'}}
 
 <DocsHero />
 
-<div style="max-width: 40rem; margin: 0 auto; padding: 0 1.5rem">
+<div style='max-width: 40rem; margin: 0 auto; padding: 0 1.5rem'>
   <DocsDemo as |demo|>
-    <demo.example name="my-demo.hbs">
-      <p>Make sure to read up on the DocsDemo component before building out this page.</p>
+    <demo.example name='my-demo.hbs'>
+      <EmberEmailAddresses@EmailAddresses
+        @onChangeSelected={{this.onChangeSelected}}
+        @selectedEmails={{this.selectedEmails}}
+        @onCreate={{this.onCreate}}
+      />
     </demo.example>
   </DocsDemo>
 </div>

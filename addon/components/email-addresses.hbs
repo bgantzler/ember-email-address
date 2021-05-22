@@ -4,17 +4,20 @@
       {{@label}}
     </label>
   {{/if}}
-  <PowerSelectMultiple
-          @triggerClass={{this.triggerClass}}
-          @options={{this.availableEmails}}
-          @selected={{this.selectedEmails}}
-          @onChange={{@onChangeSelected}}
-          @onBlur={{fn this.onBlur}}
-          @searchEnabled={{true}}
-          @renderInPlace={{true}}
-          @noMatchesMessage=""
-          @onKeydown={{this.onKeydown}}
-          as |email|>
-    {{email}}
-  </PowerSelectMultiple>
+  {{log 'selectedEmails' @selectedEmails}}
+  <PowerSelectMultipleWithCreate
+    @triggerClass={{this.triggerClass}}
+    @options={{@selectedEmails}}
+    @selected={{@selectedEmails}}
+    @onChange={{@onChange}}
+    @onCreate={{@onCreate}}
+    @renderInPlace={{true}}
+    as |option|
+  >
+    {{#if (has-block)}}
+      {{yeild option}}
+    {{else}}
+      {{option.email}}
+    {{/if}}
+  </PowerSelectMultipleWithCreate>
 </div>

@@ -1,28 +1,40 @@
 import Component from '@glimmer/component';
 import { action } from '@ember/object';
 import { isBlank } from '@ember/utils';
-import {tracked} from "@glimmer/tracking";
+import { tracked } from '@glimmer/tracking';
+
+/**
+ * Email Addresses - Component that allows you to select multiple email addresses much lilw outlook
+ *
+ * @onChangeSelected - callback when an email is added or removed
+ * @argumnet availableEmails - An array of objects that have property of emails.
+ *                             This is the list of emails to choose from
+ * @argument selectedEmails - An array of objects that have property of emails.
+ *                              This is the list of emails that have been selected
+ *
+ */
 
 export default class EmailAddressesComponent extends Component {
-  availableEmails = this.args.availableEmails || [];
+  get availableEmails() {
+    return this.args.availableEmails || [];
+  }
 
   get selectedEmails() {
-    return this.args.selectedEmails || []
+    return this.args.selectedEmails || [];
   }
 
   @tracked
   enteredEmailText = '';
 
   get triggerClass() {
-    if (this.isEmailValid(this.enteredEmailText)) {
-      return "email-input-trigger valid";
-    } else {
-      return "email-input-trigger invalid";
-    }
+    return 'email-input-trigger ' + this.isEmailValid(this.enteredEmailText)
+      ? 'valid'
+      : 'invalid';
   }
 
   isEmailValid(email) {
-    return this.args.emailValidationMatcher.test(email || '');
+    return true;
+    // return this.args.emailValidationMatcher?.test(email || '');
   }
 
   @action
@@ -31,25 +43,31 @@ export default class EmailAddressesComponent extends Component {
   }
 
   @action
+  onCreate(email) {
+    this.addAndSelectEmail({ email: email });
+  }
+
+  @action
   onKeydown(theSelect, e) {
     this.enteredEmailText = `${theSelect.searchText}${e.key}`;
 
-    if ((e.keyCode === 9 || e.keyCode === 13) && theSelect.isOpen && !theSelect.highlighted && !isBlank(this.enteredEmailText)) {
+    if (
+      (e.keyCode === 9 || e.keyCode === 13) &&
+      theSelect.isOpen &&
+      !theSelect.highlighted &&
+      !isBlank(this.enteredEmailText)
+    ) {
       this.addAndSelectEmail(theSelect);
     }
   }
 
-  addAndSelectEmail(theSelect) {
-    const potentialEmail = theSelect.searchText;
-    if (potentialEmail) {
-      if (!this.isEmailValid(potentialEmail)) {
-        return;
-      }
-
-      if (!this.selectedEmails.includes(potentialEmail)) {
-        this.availableEmails.push(potentialEmail);
-        theSelect.actions.choose(potentialEmail);
-      }
+  addAndSelectEmail(potentialEmail) {
+    let existingOption = this.selectedEmails.find(
+      ({ option }) => option.email === potentialEmail
+    );
+    if (!existingOption) {
+      this.availableEmails.push(potentialEmail);
+      this.args.onChangeSelected();
     }
   }
 }
