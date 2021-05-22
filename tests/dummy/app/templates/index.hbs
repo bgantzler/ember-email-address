@@ -2,13 +2,14 @@
 
 <DocsHero />
 
-<div style='max-width: 40rem; margin: 0 auto; padding: 0 1.5rem'>
+<div style='width: 40rem; margin: 0 auto; padding: 0 1.5rem'>
   <DocsDemo as |demo|>
     <demo.example name='my-demo.hbs'>
       <EmberEmailAddresses@EmailAddresses
-        @onChangeSelected={{this.onChangeSelected}}
+        @onChange={{this.onChangeSelected}}
         @selectedEmails={{this.selectedEmails}}
         @onCreate={{this.onCreate}}
+        @onSearch={{this.onSearch}}
       />
     </demo.example>
   </DocsDemo>

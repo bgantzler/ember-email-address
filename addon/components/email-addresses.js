@@ -4,11 +4,9 @@ import { isBlank } from '@ember/utils';
 import { tracked } from '@glimmer/tracking';
 
 /**
- * Email Addresses - Component that allows you to select multiple email addresses much lilw outlook
+ * Email Addresses - Component that allows you to select multiple email addresses much like outlook
  *
- * @onChangeSelected - callback when an email is added or removed
- * @argumnet availableEmails - An array of objects that have property of emails.
- *                             This is the list of emails to choose from
+ * @onChange - callback when an email is added or removed
  * @argument selectedEmails - An array of objects that have property of emails.
  *                              This is the list of emails that have been selected
  *
@@ -40,6 +38,11 @@ export default class EmailAddressesComponent extends Component {
   @action
   onBlur(theSelect) {
     this.addAndSelectEmail(theSelect);
+  }
+
+  @action
+  showCreateWhen() {
+    return true;
   }
 
   @action

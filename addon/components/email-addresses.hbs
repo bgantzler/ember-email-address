@@ -4,13 +4,12 @@
       {{@label}}
     </label>
   {{/if}}
-  {{log 'selectedEmails' @selectedEmails}}
   <PowerSelectMultipleWithCreate
     @triggerClass={{this.triggerClass}}
-    @options={{@selectedEmails}}
     @selected={{@selectedEmails}}
     @onChange={{@onChange}}
     @onCreate={{@onCreate}}
+    @showCreateWhen={{this.showCreateWhen}}
     @renderInPlace={{true}}
     as |option|
   >

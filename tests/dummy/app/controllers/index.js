@@ -6,8 +6,10 @@ export default class IndexController extends Controller {
   @tracked
   selectedEmails = [];
 
-  @tracked
-  availableEmails = [];
+  @action
+  onSearch(searchText) {
+    // this.selectedEmails = selectedEmails;
+  }
 
   @action
   onChange(selectedEmails) {
