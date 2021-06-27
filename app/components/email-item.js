@@ -1,0 +1,1 @@
+export { default } from 'ember-email-addresses/components/email-item';

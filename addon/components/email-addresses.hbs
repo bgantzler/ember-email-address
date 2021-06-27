@@ -11,6 +11,15 @@
     @onCreate={{@onCreate}}
     @showCreateWhen={{this.showCreateWhen}}
     @renderInPlace={{true}}
+    @selectedItemComponent={{if @selectedItemComponent @selectedItemComponent (component "ember-email-addresses@email-item")}}
+
+    @allowClear={{@allowClear}}
+    @placeholder={{@placeholder}}
+    @class={{@class}}
+    @disabled={{@disabled}}
+    @initiallyOpened={{@initiallyOpened}}
+    @placeholderComponent={{@placeholderComponent}}
+    @registerAPI={{@registerAPI}}
     as |option|
   >
     {{#if (has-block)}}
